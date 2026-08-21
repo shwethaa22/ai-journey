@@ -14,4 +14,3 @@ between sessions.
 - Persists history to JSON, reloaded on startup
 - Handles missing and corrupt history files gracefully
 
-**Run it:**
