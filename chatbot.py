@@ -1,15 +1,34 @@
 import json
+import os
+from urllib import response
+import requests
+from dotenv import load_dotenv
 
+load_dotenv()
+API_KEY = os.getenv("GROQ_API_KEY")
+URL="https://api.groq.com/openai/v1/chat/completions"
+MODEL="openai/gpt-oss-20b"
+SYSTEM={"role": "system", "content": "You are a helpful assistant." }
 
-def get_reply(message):
-    if(len(message)<5):
-        return f"The message '{message}' is too short"
-    elif(len(message)>5):
-        return f"The message '{message}' is too long"
-    else:
-        return f"The message '{message}' is of perfect length"
+if not API_KEY:
+    exit()
 
-
+def ai_convo(messages):
+    response=requests.post(
+        URL,
+        headers={"Authorization":f"Bearer {API_KEY}"},
+        json={
+            "messages": [SYSTEM] + messages,
+            "model": MODEL,
+            "temperature": 0.7,
+        },
+        timeout=10,
+    )  
+    if response.status_code != 200:
+        return f"API error: {response.status_code} - {response.text[:150]}"
+    data=response.json()
+    print(f"tokens used: {data["usage"]["total_tokens"]}")
+    return(data["choices"][0]["message"]["content"])
 
     
 try:
@@ -28,7 +47,8 @@ while(True):
         break 
     
     history.append({"role" : "user", "content":user_input})
-    history.append({"role" : "model", "content":get_reply(user_input)})
+    reply=ai_convo(history)
+    history.append({"role" : "assistant", "content":reply})
 
 with open("history.json","w") as d:
     json.dump(history,d, indent=2)
