@@ -2,13 +2,13 @@ from storage import load_history, save_history
 from ai import ai_convo
 
 
-    
+history=load_history()    
    
 while(True):
     user_input=input("Provide your input here: ")
     if(user_input=="/quit"):
         break 
-    history=load_history()
+    
     history.append({"role" : "user", "content":user_input})
     reply=ai_convo(history)
     history.append({"role" : "assistant", "content":reply})
