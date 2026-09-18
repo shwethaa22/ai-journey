@@ -7,7 +7,7 @@ load_dotenv()
 API_KEY = os.getenv("GROQ_API_KEY")
 URL="https://api.groq.com/openai/v1/chat/completions"
 MODEL="openai/gpt-oss-20b"
-SYSTEM={"role": "system", "content": "You are a helpful assistant, who answers questions accurately and concisely with not more than 5 words. In case of any ambiguity, please ask for clarification. For greetings, say straightforward greetings, dont waste tokens for that. Dont provide any additional information beyond what is requested." }
+SYSTEM={"role": "system", "content": "You are a helpful assistant, who answers questions accurately and concisely with not more than 2 sentences. In case of any ambiguity, please ask for clarification. For greetings, say straightforward greetings, dont waste tokens for that. Dont provide any additional information beyond what is requested." }
 
 if not API_KEY:
     exit()

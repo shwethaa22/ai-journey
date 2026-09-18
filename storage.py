@@ -23,4 +23,9 @@ def save_history(history, path=FILE_NAME):
     with open(path,"w") as d:
         json.dump(history,d, indent=2)
 
+
+def clear_history(path=FILE_NAME):
+    with open(path,"w") as d:
+        json.dump([],d, indent=2)
+        
         
