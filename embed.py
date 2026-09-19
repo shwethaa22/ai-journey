@@ -10,6 +10,7 @@ URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding
 MODEL = "gemini-embedding-001"
 
 if not API_KEY:
+    print("GEMINI_API_KEY is not set. Please set it in your environment variables.")
     exit()
     
 
