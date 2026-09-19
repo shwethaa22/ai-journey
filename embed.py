@@ -26,7 +26,7 @@ def get_embeddings(text):
          }
     }
     response = requests.post(URL, json=payload,timeout=10,)
-    return response.json()['embedding']['values'][0:5]
+    return response.json()['embedding']['values']
 
 
 
