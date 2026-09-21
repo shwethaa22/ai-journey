@@ -21,6 +21,5 @@ def cos_similarity(list1,list2):
     return dot_product(list1,list2)/(magnitude(list1)*magnitude(list2))  
 
 if __name__=="__main__":
-    print(cos_similarity([3, 4], [6, 8]))
-    print(cos_similarity([1, 0], [0, 1]))
-    print(cos_similarity([1, 0], [-1, 0]))            
+    print(cos_similarity([0, 0], [1, 2]))
+    
