@@ -4,6 +4,7 @@ from urllib import response
 import requests
 from streamlit import text
 
+
 load_dotenv()
 API_KEY=os.getenv("GEMINI_API_KEY")
 URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:embedContent?key={API_KEY}"
