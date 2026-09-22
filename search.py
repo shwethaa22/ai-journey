@@ -1,4 +1,5 @@
 from similarity import cos_similarity
+from embed import get_embeddings
 
 def get_score(result):
     return result["score"]
@@ -13,12 +14,13 @@ def search(query_vector, records, top_k=3):
   
  
 if __name__=="__main__":
-    records = [
-        {"text": "boats",   "vector": [0, 1]},
-        {"text": "kittens", "vector": [0.9, 0.1]},
-        {"text": "cats",    "vector": [1, 0]}
+    text=[
+         "To reset your password, go to the settings menu.",
+          "Refunds are processed within 5-7 business days.", 
+        "Our office is open from 9 AM to 5 PM."
     ] 
+    records=[{"text":text[i],"vector":get_embeddings(text[i])} for i in range(len(text))]
     b=[]
-    query=[1,0]
+    query=get_embeddings("I can't log into my account, how do i recover my account?")
     answer=search(query,records,5)
     print(f"The closest contexts are: {answer}")

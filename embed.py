@@ -35,4 +35,5 @@ def get_embeddings(text):
 if __name__ == "__main__":
     text = input("Enter text to get embeddings: ")
     embeddings = get_embeddings(text)
+    print(f"Length of embeddings: {len(embeddings)}")
     print(f"Embeddings for '{text}': {embeddings}")
