@@ -1,0 +1,16 @@
+[
+  {
+    "text": "cats",
+    "vector": [
+      1,
+      0
+    ]
+  },
+  {
+    "text": "boats",
+    "vector": [
+      0,
+      1
+    ]
+  }
+]
