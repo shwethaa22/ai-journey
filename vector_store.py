@@ -1,5 +1,7 @@
 import json
 
+from embed import get_embeddings
+
 
 def save_store(records, path="vector_store.json"):
    with open(path,"w") as d:
@@ -17,8 +19,8 @@ def load_store(path="vector_store.json", expected_model=None):
     
 if __name__ == "__main__":
     records = [
-        {"text": "cats",  "vector": [1, 0]},
-        {"text": "boats", "vector": [0, 1]},
+        {"text": "To reset your password, go to Account Settings.", "vector": get_embeddings("To reset your password, go to Account Settings and click on 'Reset Password'.")},
+        {"text": "Refunds are processed within 5-7 business days.", "vector": get_embeddings("Refunds are processed within 5-7 business days.")},
     ]
     save_store(records)
     back = load_store()
