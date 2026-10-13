@@ -10,13 +10,16 @@ def answer_question(question,records):
     for rec in records[:5]:
         print(len(rec["vector"]))  # length of stored embeddings
     chunks=[]
+    sources=[]
+
     chunk_search=search(vector,records)
     for i in chunk_search:
         chunks.append(i["text"])
+        sources.append(i["source"])
     prompt=build_prompt(question, chunks)
     
     response=ai_convo([{"role":"user","content":prompt}])
-    return response
+    return {"answer":response, "source":sources}
 
 
 if __name__ == "__main__":

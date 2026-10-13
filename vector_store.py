@@ -1,6 +1,5 @@
 import json
 
-from embed import get_embeddings
 
 
 def save_store(records, path="vector_store.json"):
