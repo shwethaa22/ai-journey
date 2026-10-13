@@ -1,8 +1,6 @@
 from dotenv import load_dotenv
 import os
-from urllib import response
 import requests
-from streamlit import text
 
 
 load_dotenv()
