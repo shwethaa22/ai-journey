@@ -3,6 +3,7 @@ from embed import get_embeddings
 from build_prompt import build_prompt
 from search import search
 from vector_store import load_store
+from confidence import is_confident
 
 def answer_question(question,records):
     vector=get_embeddings(question)
@@ -13,6 +14,9 @@ def answer_question(question,records):
     sources=[]
 
     chunk_search=search(vector,records)
+    
+    if(not is_confident(chunk_search)):
+        return {"answer":"I don't have information about that in my documents." , "source":[]}
     for i in chunk_search:
         chunks.append(i["text"])
         sources.append(i["source"])
