@@ -7,9 +7,6 @@ from confidence import is_confident
 
 def answer_question(question,records):
     vector=get_embeddings(question)
-    print(len(vector))  # length of query embedding
-    for rec in records[:5]:
-        print(len(rec["vector"]))  # length of stored embeddings
     chunks=[]
     sources=[]
 
@@ -28,4 +25,15 @@ def answer_question(question,records):
 
 if __name__ == "__main__":
     records = load_store()
-    print(answer_question("I want to check the status of my refund.But i forgot my password.What to do now?",records))
+    questions=[("direct hit","I'm locked out of my account, what do I do?"),
+               ("other chunk","How long until I get my money back?"),
+               ("two topics","I want to check my refund status but I forgot my password. What now?"),
+               ("absent","Do you offer a student discount?"),
+               ("borderline","Can I cancel an order after it has shipped?")]
+
+    for label, question in questions:
+        print("="*60)
+        print(f"[{label}] {question}")
+        result=answer_question(question,records)
+        print(f"Answer: {result['answer']}")
+        print(f"Sources: {result['source']}")
